@@ -97,6 +97,8 @@ BU.to_csv('databasetoBI/base_unificada.csv', index=False, encoding="utf-8-sig")
 ########################################################################################
 # Lendo a base
 dadaanalytcs = pd.read_csv("databasetoBI/base_unificada.csv")
+
+dadaanalytcs['valor'] = dadaanalytcs['valor'].astype(int)
 # Produtos mais vendido
 top_produtos = dadaanalytcs.groupby('nome_produto')['quantidade'].sum().sort_values(ascending=False).head(10)
 
