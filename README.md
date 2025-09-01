@@ -183,10 +183,6 @@ git push -u origin main
 
 ## Dashboard (Power BI) ##
 
-**Visualização Relatório Completo**
-
-![Dashboard](./image/Dashboard.png)
-
 **Top 10 Produtos**
 
 ![Dashboard](./image/Grafico_top10_produtos.PNG)
