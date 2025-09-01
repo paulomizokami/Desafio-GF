@@ -1,49 +1,60 @@
 # Importando bibliotecas
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 # Atribuindo arquivos as variaveis
-client = pd.read_csv("data/clientes.csv")
-sales = pd.read_csv("data/vendas.csv")
-product = pd.read_csv("data/produtos.csv")
+client = pd.read_csv("data/clientes.csv", encoding="utf-8-sig")
+sales = pd.read_csv("data/vendas.csv", encoding="utf-8-sig")
+product = pd.read_csv("data/produtos.csv", encoding="utf-8-sig")
 
+sales['quantidade'] = 1
+# Tratamento marca null Base de produtos
+def update_marca(nome_produto):
+    if 'NOTEBOOK' in nome_produto.upper():
+        return 'Notebook'
+    elif 'GELADEIRA' in nome_produto.upper():
+        return 'Geladeira'
+    elif 'FERRO DE PASSAR' in nome_produto.upper():
+        return 'Ferro de Passar'
+    elif 'IMPRESSORA' in nome_produto.upper():
+        return 'Impressora'
+    elif 'MONITOR' in nome_produto.upper():
+        return 'Monitor'
+    elif 'LUMIN' in nome_produto.upper():
+        return 'Luminaria'
+    elif 'REL' in nome_produto.upper():
+        return 'Relogio de Parede'
+    elif 'ESCOVA SECADORA' in nome_produto.upper():
+        return 'Escova Secadora'
+    elif 'BALAN' in nome_produto.upper():
+        return 'Balanca'
+    elif 'CADEIRA DE ESCRIT' in nome_produto.upper():
+        return 'Cadeira de Escritorio'
+    else:
+        return 'Desconhecida'
+
+product['marca'] = product.apply(
+    lambda row: update_marca(row['nome_produto']) if pd.isnull(row['marca']) else row['marca'],
+    axis=1
+)
 # Remove duplicidade
 client.drop_duplicates(inplace=True)
 sales.drop_duplicates(inplace=True)
 product.drop_duplicates(inplace=True)
 
-# Conversao de dados
+# Conversão de dados
 sales['data_venda'] = pd.to_datetime(sales['data_venda'], errors='coerce')
-client['id_cliente'] = pd.to_numeric(sales['id_cliente'], errors='coerce')
-sales['id_cliente'] = pd.to_numeric(sales['id_cliente'], errors='coerce')
+sales['valor'] = sales['valor'].astype(float)
 
-# Visualizar as 5 primeiras linhas de cada base
-print("Clientes:")
-print(client.head())
+# Merge de Bases
+BU = sales.merge(client, on="id_cliente", how="inner")
+BU = BU.merge(product, on="id_produto", how="left")
 
-print("Vendas:")
-print(sales.head())
+# Tratamento nome_produto, descricao e marca null
+BU[['nome_produto', 'descricao', 'marca']] = BU[['nome_produto', 'descricao', 'marca']].fillna('Desconhecido')
 
-print("Produtos:")
-print(product.head())
-
-# Verifica valores nulos
-print("Valores nulos em Clientes:\n", client.isnull().sum())
-print("Valores nulos em Vendas:\n", sales.isnull().sum())
-print("Valores nulos em Produtos:\n", product.isnull().sum())
-
-# Supondo que as chaves são: cliente_id e produto_id
-
-sales_client = sales.merge(client, on="id_cliente", how="left")
-sales_client.to_csv('basecliente.csv', index=False)
-print("Base cliente exportada.csv")
-#BU = sales_client.merge(product, on="id_produto", how="left")
-
-# Verificando resultado
-#print(BU.head())
-#BU.to_csv
-#BU.to_excel('base_tratada.xlsx', index=False)
-#print("Base exportada como base_tratada.csv")
-
-
-
+# Cria base Unificada
+BU.to_csv('databasetoBI/base_unificada.csv', index=False, encoding="utf-8-sig")
+print("Base exportada como base_unificada.csv")
