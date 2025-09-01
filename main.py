@@ -9,6 +9,41 @@ client = pd.read_csv("data/clientes.csv", encoding="utf-8-sig")
 sales = pd.read_csv("data/vendas.csv", encoding="utf-8-sig")
 product = pd.read_csv("data/produtos.csv", encoding="utf-8-sig")
 
+# Dicionário com correspondência UF → Estado
+uf_para_estado = {
+    'AC': 'Acre',
+    'AL': 'Alagoas',
+    'AP': 'Amapá',
+    'AM': 'Amazonas',
+    'BA': 'Bahia',
+    'CE': 'Ceará',
+    'DF': 'Distrito Federal',
+    'ES': 'Espírito Santo',
+    'GO': 'Goiás',
+    'MA': 'Maranhão',
+    'MT': 'Mato Grosso',
+    'MS': 'Mato Grosso do Sul',
+    'MG': 'Minas Gerais',
+    'PA': 'Pará',
+    'PB': 'Paraíba',
+    'PR': 'Paraná',
+    'PE': 'Pernambuco',
+    'PI': 'Piauí',
+    'RJ': 'Rio de Janeiro',
+    'RN': 'Rio Grande do Norte',
+    'RS': 'Rio Grande do Sul',
+    'RO': 'Rondônia',
+    'RR': 'Roraima',
+    'SC': 'Santa Catarina',
+    'SP': 'São Paulo',
+    'SE': 'Sergipe',
+    'TO': 'Tocantins'
+}
+
+# Criar nova coluna com o nome do estado
+client['nome_estado'] = client['estado'].map(uf_para_estado)
+
+# Add coluna quantidade
 sales['quantidade'] = 1
 # Tratamento marca null Base de produtos
 def update_marca(nome_produto):
