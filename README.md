@@ -57,30 +57,101 @@ README.md
 
 ## Como Executar o Projeto
 
-1. **Clone o repositório:**
+Para exportar um projeto do GitHub e executá-lo localmente no seu Visual Studio Code (VSCode), siga os passos abaixo:
 
-```bash
-git clone https://github.com/paulomizokami/Desafio-GF.git
-```
-2. **Navegue até o repositório:**
-```bash
+**1) Clonar o Repositório do GitHub e abrir projeto**
+
+Primeiro, você precisa clonar o repositório do GitHub para o seu computador.
+
+**1.1) Abra o terminal no VSCode:**
+
+* Abra o VSCode.
+
+* Abra o terminal (você pode pressionar Ctrl + (crase) ou ir em Terminal > Novo Terminal).
+
+* Navegue com o comando ````cd```` do CMD (Prompt de comando até a pasta onde deseja exportar o projeto)
+
+* No meu caso eu exportei na pasta documentos Exemplo:
+````bash
+PS C:\Users\AMD> cd documents
+````
+
+**1.2) Clone o repositório no seu diretório local escolhido:**
+
+* No terminal, digite o comando para clonar o repositório:
+
+````bash
+git clone <link-do-repositorio>
+````
+Exemplo:
+
+````bash
+git clone https://github.com/paulomizokami/Desafio-GF
+````
+
+**1.3) Acesse o diretório do projeto:**
+
+* Após clonar o repositório, entre na pasta do projeto:
+````bash
+cd nome-do-repositorio
+````
+Exemplo:
+
+````bash
 cd Desafio-GF
-```
-3. **Crie um ambiente virtual:**
+````
+**1.4) Abrir a pasta do repositorio/projeto no VSCode:**
 
-```bash
-python -m venv .venv
-source .venv/bin/activate  # Linux/Mac
-.venv\Scripts\activate     # Windows
-```
+copie e cole no terminal o comando abaixo para abrir:
 
-5. **Execute o Jupyter Notebook(ou no prompt):**
+````bash
+code .
+````
 
-```bash
-jupyter notebook notebooks/01_analise_exploratoria.ipynb
-```
-(Opcional) Visualize o Dashboard Power BI:
-Abra o arquivo visualizations/powerbi_dashboard.pbix com Power BI Desktop.
+**1.5) Aberto em nova instancia**
+
+* Foi direcionado a uma nova instancia do VScode, se faz necessario abrir o terminal novamente (você pode pressionar ````Ctrl```` + (crase) ou ir em Terminal > Novo Terminal).
+
+**2) Execução** ````etl.py```` **e** ````analytcs.py````
+
+* Execute o arquivo ````etl.py```` contido na pasta src com:
+
+````bash
+python src/etl.py
+````
+
+* Execute o arquivo ````analytcs.py```` contido na pasta src com:
+python src/analytcs.py
+
+**Visões:**
+* Top 10 Produtos mais vendidos
+* Vendas por Canal
+* Sazonalidade por Ano-Mês
+
+**3) Relatório em Power BI**
+
+* Apenas ratificando que o relatório contido no caminho ````Desafio-GF/PBI/Dashboard_Vendas.pbix```` esta com vinculo das bases diretamento do repositório Web. Para que seja atualizado após quaisquer alteração se faz necessario subir os arquivos para o repositório. abrir arquivo com Power BI Desktop.
+
+* Após qualquer alteração no Script carregar novamente o projeto com as bases atualizadas.
+
+Exemplo:
+1º comando
+
+````bash
+git add .
+````
+
+2º comando
+
+````bash
+git commit -m "Dados reprocessados devido alteração X"
+````
+
+3º comando
+
+````bash
+git push -u origin main
+````
 
 ## Análises Realizadas ##
 
@@ -88,7 +159,7 @@ Abra o arquivo visualizations/powerbi_dashboard.pbix com Power BI Desktop.
 
 * Performance por Canal de Venda
 
-* *Análise Temporal e Sazonalidade de Vendas
+* Análise Temporal e Sazonalidade de Vendas
 
 * Inferência de Marcas Faltantes
 
@@ -111,17 +182,25 @@ Abra o arquivo visualizations/powerbi_dashboard.pbix com Power BI Desktop.
     **Resposta:** Sim, com inferência via regex e padrões no nome
 
 ## Dashboard (Power BI) ##
+
 **Visualização Relatório Completo**
+
 ![Dashboard](./image/Dashboard.png)
+
 **Top 10 Produtos**
+
 ![Dashboard](./image/Grafico_top10_produtos.PNG)
+
 **Rank Canais**
+
 ![Dashboard](./image/Grafico_Performance_por_canal.PNG)
 
 **Sazonalidade Mês**
+
 ![Dashboard](./image/Grafico_sznl_mes.PNG)
 
 **Sazonalidade Ano**
+
 ![Dashboard](./image/Grafico_sznl_ano.PNG)
 
 ## Autor ##
