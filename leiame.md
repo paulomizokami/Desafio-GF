@@ -46,22 +46,6 @@ Este projeto foi desenvolvido como parte do processo seletivo para a vaga de **A
     
 README.md
 
-
-
-
-
-│
-├── visualizations/
-│ ├── powerbi_dashboard.pbix
-│ └── graficos/
-│ ├── top_produtos.png
-│ ├── vendas_por_canal.png
-│ └── sazonalidade.png
-│
-├── requirements.txt
-├── README.md
-└── .gitignore
-
 ##  Tecnologias Utilizadas
 
 - **Python**: Pandas, NumPy, Seaborn, Matplotlib
@@ -127,8 +111,18 @@ Abra o arquivo visualizations/powerbi_dashboard.pbix com Power BI Desktop.
     **Resposta:** Sim, com inferência via regex e padrões no nome
 
 ## Dashboard (Power BI) ##
-Exemplo de visualização:
+**Visualização Relatório Completo**
+![Dashboard](./image/Dashboard.png)
+**Top 10 Produtos**
+![Dashboard](./image/Grafico_top10_produtos.PNG)
+**Rank Canais**
+![Dashboard](./image/Grafico_Performance_por_canal.PNG)
 
+**Sazonalidade Mês**
+![Dashboard](./image/Grafico_sznl_mes.PNG)
+
+**Sazonalidade Ano**
+![Dashboard](./image/Grafico_sznl_ano.PNG)
 
 ## Autor ##
 **Nome:** Paulo Hiroche Macedo Mizokami
