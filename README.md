@@ -50,7 +50,7 @@ README.md
 
 - **Python**: Pandas, NumPy, Seaborn, Matplotlib
 - **Power BI**: Dashboard interativo
-- **Jupyter Notebook**
+- **VScode**
 - **Git e GitHub**
 
 ---
@@ -83,26 +83,15 @@ PS C:\Users\AMD> cd documents
 ````bash
 git clone <link-do-repositorio>
 ````
-Exemplo:
-
-````bash
-git clone https://github.com/paulomizokami/Desafio-GF
-````
-
 **1.3) Acesse o diretório do projeto:**
 
 * Após clonar o repositório, entre na pasta do projeto:
-````bash
-cd nome-do-repositorio
-````
-Exemplo:
-
 ````bash
 cd Desafio-GF
 ````
 **1.4) Abrir a pasta do repositorio/projeto no VSCode:**
 
-copie e cole no terminal o comando abaixo para abrir:
+copie e cole no terminal o comando abaixo e pressione enter para abrir o projeto:
 
 ````bash
 code .
@@ -112,18 +101,28 @@ code .
 
 * Foi direcionado a uma nova instancia do VScode, se faz necessario abrir o terminal novamente (você pode pressionar ````Ctrl```` + (crase) ou ir em Terminal > Novo Terminal).
 
-**2) Execução** ````etl.py```` **e** ````analytcs.py````
+**2) Execução** ````instalar_bibliotecas.py````, ````etl.py```` **e** ````analytcs.py````
 
-* Execute o arquivo ````etl.py```` contido na pasta src com:
+* Execute o arquivo ````instalar_bibliotecas.py```` contido na pasta src, copie o código abaixo e cole no terminal e precione enter:
+
+````bash
+python instalar_bibliotecas.py
+````
+
+* Execute o arquivo ````etl.py```` contido na pasta src, copie o código abaixo e cole no terminal e precione enter:
 
 ````bash
 python src/etl.py
 ````
 
-* Execute o arquivo ````analytcs.py```` contido na pasta src com:
-python src/analytcs.py
+* Execute o arquivo ````analytcs.py```` contido na pasta src, copie o código abaixo e cole no terminal e precione enter:
 
-**Visões:**
+````bash
+python src/analytcs.py
+````
+
+**Visões (Quantidade e Faturamento):**
+
 * Top 10 Produtos mais vendidos
 * Vendas por Canal
 * Sazonalidade por Ano-Mês
@@ -168,14 +167,58 @@ git push -u origin main
 ## Perguntas de Negócio Respondidas ##
 1) Quais são os produtos mais vendidos?	
 
-    **Resposta:** Produto X lidera com Y unidades vendidas
+    **Resposta:** Em quantidade o Produto "Adaptador HDMI para VGA" lidera com 63 unidades vendidas.
+                  Em faturamento o Produto "Impressora HP Ink Tank 416" lidera com 271.698,00.
+
+````bash 
+Top 10 por quantidade:
+
+1ª Adaptador HDMI para VGA
+2ª Tablet Samsung Galaxy Tab A7
+3ª Impressora HP Ink Tank 416
+4ª Fritadeira Elétrica Britânia
+5ª Smartwatch Apple Watch SE
+6ª Batedeira Arno Facilita
+7ª Liquidificador Philips Walita Problend
+8ª Relógio de Parede Analógico
+9ª Roteador TP-Link Archer AX10
+10ª Ventilador de Mesa Mondial 40cm
+````
+
+````bash 
+Top 10 por Faturamento:
+
+1ª Impressora HP Ink Tank 416
+2ª Tablet Samsung Galaxy Tab A7
+3ª Adaptador HDMI para VGA
+4ª Batedeira Arno Facilita
+5ª Cadeira de Escritório Ergonômica
+6ª Microfone Fifine K669B
+7ª Smartwatch Apple Watch SE
+8ª Ventilador de Mesa Mondial 40cm
+9ª Mochila Executiva Dell
+10ª Roteador TP-Link Archer AX10
+````
+
 2) Quais canais performam melhor?
 
-    **Resposta:** Canal Z tem maior receita, seguido por Canal Y
+    **Resposta:** Canal "Revendedor" tem maior receita e maio quantidade de vendas, seguido por Canal "Loja Física"
+
+````bash
+Por quantidade e faturamento a ordem é a mesma:
+
+1º Revendedor
+2º Loja Física
+3º Loja Online
+4º Marketplace
+
+````
 
 3) Há padrões sazonais nas vendas?
 
-    **Resposta:** Pico de vendas ocorre entre os meses de novembro e dezembro
+    **Resposta:** Pico de vendas ocorre entre os meses de Janeiro, Julho Setembro e novembro.
+
+    Foi identificado apenas no 2º trimestre uma queda em vendas e faturamento.
 
 4) Produtos com marcas ausentes foram tratados?
 
